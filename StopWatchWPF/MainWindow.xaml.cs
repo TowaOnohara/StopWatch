@@ -1,4 +1,5 @@
-﻿using StopWatchCore.Models;
+﻿using StopWatchCore.Frameworks.Messengers;
+using StopWatchCore.Models;
 using StopWatchCore.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -25,7 +26,26 @@ namespace StopWatchWPF
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = new StopWatchViewModel(App.Current as IModelPool);
+            var _viewModel = new StopWatchViewModel(App.Current as IModelPool);
+            this.DataContext = _viewModel;
+
+            _viewModel.Messenger.Register(typeof(StartViewMessage).Name, message =>
+            {
+                var msg = message as StartViewMessage;
+                var v = new LapView()
+                {
+                    DataContext = new LapViewModel(App.Current as IModelPool),
+                    Owner = this,
+                    WindowStartupLocation = WindowStartupLocation.CenterOwner,
+                };
+                v.ShowDialog();
+            });
+
+            _viewModel.Messenger.Register(typeof(ShowToastMessage).Name, message =>
+            {
+                var msg = message as ShowToastMessage;
+                MessageBox.Show(msg.Text);
+            });
         }
     }
 }

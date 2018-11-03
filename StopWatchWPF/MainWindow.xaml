@@ -30,7 +30,7 @@
                    FontFamily="Consolas" FontSize="48" 
                    HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <CheckBox Grid.Row="1" Content="小数点以下の表示" Command="{Binding CommandToggleVisibleMillis}" 
-                  VerticalContentAlignment="Center" FlowDirection="RightToLeft" Margin="0,0,20,0" />
+                  VerticalContentAlignment="Center" FlowDirection="LeftToRight" Margin="10,0,0,0" IsChecked="True" />
         <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -40,6 +40,6 @@
             <Button Grid.Column="1" Content="Lap" Command="{Binding CommandLap}" FontFamily="Consolas" FontSize="24"/>
         </Grid>
         <ListBox Grid.Row="3" ItemsSource="{Binding FormattedLaps.Value}" DisplayMemberPath="." 
-                 FontSize="24" FontFamily="Consolas" HorizontalContentAlignment="Right" />
+                 FontSize="24" FontFamily="Consolas" HorizontalContentAlignment="Left" />
     </Grid>
 </Window>
