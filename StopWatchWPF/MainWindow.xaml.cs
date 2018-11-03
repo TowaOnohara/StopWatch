@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StopWatchCore.Models;
+using StopWatchCore.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace StopWatchWPF
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = new StopWatchViewModel(App.Current as IModelPool);
         }
     }
 }

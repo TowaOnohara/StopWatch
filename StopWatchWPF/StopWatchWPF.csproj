@@ -94,5 +94,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StopWatchCore\StopWatchCore.csproj">
+      <Project>{27abec3c-7173-49f0-990d-6d1ce107b497}</Project>
+      <Name>StopWatchCore</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

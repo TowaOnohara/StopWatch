@@ -1,0 +1,5 @@
+ReactiveProperty
+
+
+CombineLatest			https://blog.okazuki.jp/entry/20120219/1329663635	
+ToReadOnlyReactiveProperty	https://blog.okazuki.jp/entry/2015/12/05/221154
