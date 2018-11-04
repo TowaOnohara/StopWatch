@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:coreVM="clr-namespace:StopWatchCore.ViewModels;assembly=StopWatchCore"
+             xmlns:local="clr-namespace:StopWatchIOS"
+             x:Class="StopWatchIOS.MainPage">
+
+    <ContentPage.BindingContext>
+        <coreVM:StopWatchViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout Orientation="Vertical">
+        <Label Text="{Binding FormattedTime.Value}" FontSize="24" FontFamily="Consolas" HorizontalOptions="Center" VerticalOptions="Center"/>
+        <Button Text="Start/Stop" FontSize="24" FontFamily="Consolas" Command="{Binding CommandStartOrStop}" HorizontalOptions="Center" VerticalOptions="Center"/>
+    </StackLayout>
+
+</ContentPage>
