@@ -29,6 +29,8 @@ namespace StopWatchWPF
             var _viewModel = new StopWatchViewModel(App.Current as IModelPool);
             this.DataContext = _viewModel;
 
+
+            // メッセージ受信処理：Laps画面の表示
             _viewModel.Messenger.Register(typeof(StartViewMessage).Name, message =>
             {
                 var msg = message as StartViewMessage;
@@ -41,6 +43,8 @@ namespace StopWatchWPF
                 v.ShowDialog();
             });
 
+
+            // メッセージ受信処理：トーストの表示（WPFではメッセージボックスにした）
             _viewModel.Messenger.Register(typeof(ShowToastMessage).Name, message =>
             {
                 var msg = message as ShowToastMessage;

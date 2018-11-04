@@ -67,6 +67,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Converter.cs" />
     <Compile Include="LapView.xaml.cs">
       <DependentUpon>LapView.xaml</DependentUpon>
     </Compile>

@@ -4,6 +4,13 @@
              xmlns:local="clr-namespace:StopWatchWPF"
              StartupUri="MainWindow.xaml" Startup="Application_Startup">
     <Application.Resources>
-         
+        <DataTemplate x:Key="NumberListBoxItem">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Path=TemplatedParent.(ItemsControl.AlternationIndex), 
+                                    RelativeSource={RelativeSource Mode=TemplatedParent}, 
+                                    StringFormat={}{0}\.}" FontFamily="Meiryo" FontSize="18" VerticalAlignment="Center" Padding="10,0,15,0"/>
+                <TextBlock Text="{Binding Path=.}"/>
+            </StackPanel>
+        </DataTemplate>
     </Application.Resources>
 </Application>

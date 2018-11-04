@@ -5,8 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:StopWatchWPF"
         mc:Ignorable="d"
-        Title="LapView" Height="201.232" Width="533.803">
+        Title="Laps" Height="400" Width="300" ResizeMode="NoResize">
     <Grid>
-
+        <ListBox ItemsSource="{Binding FormattedLaps.Value}" 
+                 AlternationCount="{Binding Path=FormattedLaps.Value.Count}"
+                 ItemTemplate="{StaticResource NumberListBoxItem}"
+                 FontFamily="Consolas" FontSize="24"/>
     </Grid>
 </Window>

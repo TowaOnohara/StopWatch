@@ -22,6 +22,13 @@ namespace StopWatchWPF
         public LapView()
         {
             InitializeComponent();
+            this.MouseLeftButtonDown += LapView_MouseLeftButtonDown;
+        }
+
+        private void LapView_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ButtonState != MouseButtonState.Pressed) { return; }
+            this.DragMove();
         }
     }
 }

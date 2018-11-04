@@ -4,20 +4,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:coreVM="clr-namespace:StopWatchCore.ViewModels;assembly=StopWatchCore"
-        xmlns:coreM="clr-namespace:StopWatchCore.Models;assembly=StopWatchCore"
+        xmlns:cnv="clr-namespace:StopWatchWPF.Converters"
         xmlns:local="clr-namespace:StopWatchWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="439" Width="311">
-    <!--<Window.DataContext>
-        <ObjectDataProvider ObjectType="coreVM:StopWatchViewModel">
-            <ObjectDataProvider.ConstructorParameters>
-                <coreM:StopWatchModel/>
-            </ObjectDataProvider.ConstructorParameters>
-        </ObjectDataProvider>
-    </Window.DataContext>-->
+    
     <Window.DataContext>
         <coreVM:StopWatchViewModel/>
     </Window.DataContext>
+    <Window.Resources>
+        <cnv:RunningStateToStringConverter x:Key="RunningStateToStringConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="120"/>
@@ -36,10 +33,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Content="Start" Command="{Binding CommandStartOrStop}" FontFamily="Consolas" FontSize="24"/>
+            <Button Grid.Column="0" Content="{Binding IsRunning.Value, Converter={StaticResource RunningStateToStringConverter}}" Command="{Binding CommandStartOrStop}" FontFamily="Consolas" FontSize="24"/>
             <Button Grid.Column="1" Content="Lap" Command="{Binding CommandLap}" FontFamily="Consolas" FontSize="24"/>
         </Grid>
-        <ListBox Grid.Row="3" ItemsSource="{Binding FormattedLaps.Value}" DisplayMemberPath="." 
+        <ListBox Grid.Row="3" ItemsSource="{Binding FormattedLaps.Value}" 
+                 ItemTemplate="{StaticResource NumberListBoxItem}" AlternationCount="{Binding FormattedLaps.Value.Count}"
                  FontSize="24" FontFamily="Consolas" HorizontalContentAlignment="Left" />
     </Grid>
 </Window>
