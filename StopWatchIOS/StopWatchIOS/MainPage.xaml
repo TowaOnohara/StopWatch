@@ -3,14 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:coreVM="clr-namespace:StopWatchCore.ViewModels;assembly=StopWatchCore"
              xmlns:local="clr-namespace:StopWatchIOS"
+             xmlns:cnv="clr-namespace:StopWatchIOS.Converters"
              x:Class="StopWatchIOS.MainPage">
 
     <ContentPage.BindingContext>
         <coreVM:StopWatchViewModel/>
     </ContentPage.BindingContext>
-    <StackLayout Orientation="Vertical">
-        <Label Text="{Binding FormattedTime.Value}" FontSize="24" FontFamily="Consolas" HorizontalOptions="Center" VerticalOptions="Center"/>
-        <Button Text="Start/Stop" FontSize="24" FontFamily="Consolas" Command="{Binding CommandStartOrStop}" HorizontalOptions="Center" VerticalOptions="Center"/>
-    </StackLayout>
+    <ContentPage.Resources>
+        <cnv:RunningStateToStringConverter x:Key="RunningStateToStringConverter"/>
+    </ContentPage.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="200*"/>
+        </Grid.RowDefinitions>
 
+        <Label Text="{Binding Path=FormattedTime.Value}" 
+                   FontFamily="Consolas" FontSize="48" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" Margin="0,50,0,0" />
+        <Grid Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Switch FlowDirection="LeftToRight" Margin="10,0,0,0" IsToggled="True" Toggled="Switch_Toggled" />
+            <Label  Grid.Column="1" Text="小数点以下の表示" VerticalTextAlignment="Center" />
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Text="{Binding IsRunning.Value, Converter={StaticResource RunningStateToStringConverter}}" Command="{Binding CommandStartOrStop}" FontFamily="Consolas" FontSize="24"/>
+            <Button Grid.Column="1" Text="Lap" Command="{Binding CommandLap}" FontFamily="Consolas" FontSize="24"/>
+        </Grid>
+        <ListView Grid.Row="3" ItemsSource="{Binding FormattedLaps.Value}" />
+
+    </Grid>
 </ContentPage>
